@@ -1,8 +1,8 @@
-#læsemakker-mini
+# læsemakker-mini
 
-#installation
+# installation
 open .pml in Choregraphe
 Connect to robot and install.
 
-#run
+# run
 Say voice command "læsemakker" while in the dialog 
