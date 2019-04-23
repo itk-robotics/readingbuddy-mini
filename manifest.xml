@@ -20,11 +20,13 @@
    <triggerSentences>
     <sentence lang="da_DK">læsemakker</sentence>
    </triggerSentences>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
  <services>
-  <service name="PythonAppMain" execStart="main.py" autorun="false"/>
+  <service autorun="false" execStart="main.py" name="PythonAppMain"/>
  </services>
  <executableFiles>
   <file path="main.py"/>

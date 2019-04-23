@@ -8,7 +8,7 @@ try {
     // now that we are connected, we can use the buttons on the page
     $('button').prop('disabled', false);
     s.service('ALMemory').then(function (memory) {
-      memory.subscriber('TouchChanged').then(function (subscriber) {
+      memory.subscriber('myevent').then(function (subscriber) {
         subscriber.signal.connect(changeTitle);
       });
     });
@@ -22,13 +22,25 @@ $(function () {
   $('#say').click(sayHelloWorld);
 });
 
+$(function () {
+  $('#event_test').click(raiseMemoryEventTest);
+});
+
 function changeTitle(data) {
   $('h1').text('Message received!')
 }
 
 function sayHelloWorld() {
   session.service('ALTextToSpeech').then(function (tts) {
-    tts.say('Hello World!');
+    tts.say('test');
+  }, function (error) {
+    console.log(error);
+  })
+}
+
+function raiseMemoryEventTest() {
+  session.service('ALMemory').then(function (memory) {
+    memory.raiseEvent('tabletButtonPress', 'random payload');
   }, function (error) {
     console.log(error);
   })

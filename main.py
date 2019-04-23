@@ -12,7 +12,6 @@ sys.stderr = codecs.getwriter('utf8')(sys.stderr)
 from time import time, sleep
 import datetime
 
-
 class PythonReadingBuddy(object):
 
     def __init__(self, application):
@@ -56,6 +55,7 @@ class PythonReadingBuddy(object):
             self.ts.showWebview()
             self.logger.info("Tablet loaded!")
         except Exception, e:
+            print e #todo delete and just read robot log...
             self.logger.error(e)
             self.notification.add(
                 {"message": "loading error. I cant use my tablet", "severity": "warning", "removeOnRead": True})
@@ -67,6 +67,12 @@ class PythonReadingBuddy(object):
 
         self.callbackMiddleTactile = self.memory.subscriber('MiddleTactilTouched')
         self.intSignalIDHeadtouch = self.callbackMiddleTactile.signal.connect(self.headtouchEvent)
+
+
+        #testing tablet memory event
+        self.callbackTabletButton = self.memory.subscriber('tabletButtonPress')
+        self.intSignalIDtabletButton = self.callbackTabletButton.signal.connect(self.tabletbuttonevent)
+
         self.perception.resetPopulation()
         self.logger.info("Initialized!")
 
@@ -77,6 +83,9 @@ class PythonReadingBuddy(object):
         print "\033[95m Starting app \033[0m"
         self.audio.playSoundSetFile('sfx_confirmation_1')
 
+        sleep(3)
+        print "raise myevent"
+        self.memory.raiseEvent("myevent","random data")
 
     @qi.nobind
     def headtouchEvent(self,var):
@@ -86,6 +95,10 @@ class PythonReadingBuddy(object):
         #print "signal disconnected: intSignalIDHeadtouch = " + str(self.intSignalIDHeadtouch)
         self.intSignalIDHeadtouch = self.callbackMiddleTactile.signal.connect(self.headtouchEvent)
         #print "signal connected: self.intSignalIDHeadtouch = " + str(self.intSignalIDHeadtouch)
+
+    @qi.nobind
+    def tabletbuttonevent(self, var):
+        print var
 
     @qi.nobind
     def stop_app(self):
@@ -103,7 +116,7 @@ class PythonReadingBuddy(object):
         # called when your module is stopped
         self.logger.info("Cleaning...")
         self.stopMonologue()
-        self.memory.raiseEvent("memHideString", 1)
+        self.memory.raiseEvent("memHideString", 1) #todo delete
         self.ts.resetTablet()
         #TODO Clean subscribed signals?
         #self.leds.on("FaceLeds")
@@ -113,16 +126,12 @@ class PythonReadingBuddy(object):
 if __name__ == "__main__":
     # with this you can run the script for tests on remote robots
     # run : python main.py --qi-url 123.123.123.123
-    with open('logfile.txt', 'a') as the_file:
-        the_file.write('main called\n')
     app = qi.Application(sys.argv)
     app.start()
     service_instance = PythonReadingBuddy(app)
     service_id = app.session.registerService(service_instance.service_name, service_instance)
     service_instance.start_app()
     app.run()
-
-
 
     service_instance.cleanup()
     app.session.unregisterService(service_id)
