@@ -115,8 +115,6 @@ class PythonReadingBuddy(object):
     def cleanup(self):
         # called when your module is stopped
         self.logger.info("Cleaning...")
-        self.stopMonologue()
-        self.memory.raiseEvent("memHideString", 1) #todo delete
         self.ts.resetTablet()
         #TODO Clean subscribed signals?
         #self.leds.on("FaceLeds")
