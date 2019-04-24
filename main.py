@@ -4,7 +4,7 @@
 import sys
 import os
 import qi
-
+import random
 import codecs
 sys.stdout = codecs.getwriter('utf8')(sys.stdout) #prevent print to console from crashing on special characters
 sys.stderr = codecs.getwriter('utf8')(sys.stderr)
@@ -65,16 +65,21 @@ class PythonReadingBuddy(object):
 
         self.memory = self.session.service("ALMemory")
 
-        self.callbackMiddleTactile = self.memory.subscriber('MiddleTactilTouched')
-        self.intSignalIDHeadtouch = self.callbackMiddleTactile.signal.connect(self.headtouchEvent)
+        # tablet interaction
+        # cb = callback, id = signal id, me = memory event
+        self.cb_tablet_button = self.memory.subscriber('me_tablet_button_press')
+        self.id_tablet_button = self.cb_tablet_button.signal.connect(self.func_tablet_button)
 
-
-        #testing tablet memory event
-        self.callbackTabletButton = self.memory.subscriber('tabletButtonPress')
-        self.intSignalIDtabletButton = self.callbackTabletButton.signal.connect(self.tabletbuttonevent)
+        self.cb_tablet_timer = self.memory.subscriber('me_tablet_timer_event')
+        self.id_tablet_timer = self.cb_tablet_timer.signal.connect(self.func_tablet_timer)
 
         self.perception.resetPopulation()
         self.logger.info("Initialized!")
+        self.say_feedback = ["hvor er du god til at læse højt",
+                             "det er du rigtig god til",
+                             "årh det er spændende",
+                             "det er dejligt at høre historier"]
+
 
 
     @qi.nobind
@@ -82,23 +87,57 @@ class PythonReadingBuddy(object):
         self.logger.info("Started!")
         print "\033[95m Starting app \033[0m"
         self.audio.playSoundSetFile('sfx_confirmation_1')
+        self.listener = Listener() #init listener class
+        self.animatedSpeech.say(self.listener.say)
 
-        sleep(3)
-        print "raise myevent"
-        self.memory.raiseEvent("myevent","random data")
+
 
     @qi.nobind
     def headtouchEvent(self,var):
         if var == 0.0:
             return #triggers both when hand touches and when it is lifted.
-        self.callbackMiddleTactile.signal.disconnect(self.intSignalIDHeadtouch)
-        #print "signal disconnected: intSignalIDHeadtouch = " + str(self.intSignalIDHeadtouch)
-        self.intSignalIDHeadtouch = self.callbackMiddleTactile.signal.connect(self.headtouchEvent)
-        #print "signal connected: self.intSignalIDHeadtouch = " + str(self.intSignalIDHeadtouch)
+
+        #disconnect and reconnect to prevent continous calls to this function.
+        self.cb_head_touch.signal.disconnect(self.id_head_touch)
+        self.id_head_touch = self.cb_head_touch.signal.connect(self.headtouchEvent)
+
+        print "head touch event - toggle timer"
+        self.memory.raiseEvent('me_toggle_timer', 'random payload')
+
 
     @qi.nobind
-    def tabletbuttonevent(self, var):
-        print var
+    def func_tablet_button(self, var):
+        self.logger.info("Tablet button press = " + str(var))
+        if var == "time_select":
+            self.animatedSpeech.say("jeg glæder mig til at høre historien. Jeg lytter godt efter. undervejs vil jeg stille dig nogle spørgsmål.")
+
+            if self.id_head_touch  == None:
+                # subscribe to head touch event for the first time
+                self.cb_head_touch = self.memory.subscriber('MiddleTactilTouched')
+                self.id_head_touch = self.cb_head_touch.signal.connect(self.headtouchEvent)
+
+            #TODO say
+            # Tryk på mit hoved, når du er klar.
+            # animation >head<
+
+        elif var == "asdfdsaf":
+            pass
+        else:
+            print "Unknown tablet button: " + str(var)
+
+    @qi.nobind
+    def func_tablet_timer(self, var):
+        self.logger.info("Tablet timer event = " + str(var))
+        if var == "timeout":
+            #self.animatedSpeech.say(random.choice(self.say_feedback))
+            pass
+            #say feedback on tablet!
+
+
+        elif var == "asdfdsaf":
+            pass
+        else:
+            print "Unknown tablet button: " + str(var)
 
     @qi.nobind
     def stop_app(self):
@@ -107,7 +146,7 @@ class PythonReadingBuddy(object):
         
         self.logger.info("Stopping service...")
         self.application.stop()
-        # TODO call al behaviormanager and stop the behavior. It block s The Dialog.
+        # TODO call al behaviormanager and stop the behavior. It block s The Dialog ?
         self.logger.info("Stopped!")
 
 
@@ -116,9 +155,24 @@ class PythonReadingBuddy(object):
         # called when your module is stopped
         self.logger.info("Cleaning...")
         self.ts.resetTablet()
-        #TODO Clean subscribed signals?
+        #TODO Unregister subscribed signals?? Or are they automatically removed when service is unregistered in the last line of main.py?
         #self.leds.on("FaceLeds")
         self.logger.info("Cleaned!")
+
+class Listener():
+    def __init__(self):
+        self.state = "init"
+        self.__say = "hvor længe skal vi læse?"
+        self.questions = {}
+
+
+    @property
+    def say(self):
+        return self.__say
+
+
+    #can count answered questions
+    #can recall selected questions
 
 
 if __name__ == "__main__":
