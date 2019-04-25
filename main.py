@@ -87,13 +87,15 @@ class PythonReadingBuddy(object):
         self.logger.info("Started!")
         print "\033[95m Starting app \033[0m"
         self.audio.playSoundSetFile('sfx_confirmation_1')
-        self.listener = Listener() #init listener class
-        self.animatedSpeech.say(self.listener.say)
+
+        #self.listener = Listener() #init listener class
+        self.animatedSpeech.say("hvor længe skal vi læse?")
 
 
 
     @qi.nobind
     def headtouchEvent(self,var):
+        pass
         if var == 0.0:
             return #triggers both when hand touches and when it is lifted.
 
@@ -107,6 +109,7 @@ class PythonReadingBuddy(object):
 
     @qi.nobind
     def func_tablet_button(self, var):
+        pass
         self.logger.info("Tablet button press = " + str(var))
         if var == "time_select":
             self.animatedSpeech.say("jeg glæder mig til at høre historien. Jeg lytter godt efter. undervejs vil jeg stille dig nogle spørgsmål.")
@@ -127,6 +130,7 @@ class PythonReadingBuddy(object):
 
     @qi.nobind
     def func_tablet_timer(self, var):
+        pass
         self.logger.info("Tablet timer event = " + str(var))
         if var == "timeout":
             #self.animatedSpeech.say(random.choice(self.say_feedback))
