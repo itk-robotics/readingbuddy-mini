@@ -1,4 +1,5 @@
-import readingbuddy from './js/readingbuddy.js'
+require('jquery');
+//import readingbuddy from './js/readingbuddy.js'
 
 // Create readtime btns
 
