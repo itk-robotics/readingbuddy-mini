@@ -52,7 +52,7 @@ module.exports = {
     //       }
     //     }
     //   },
-      {
+/*      {
         test: require.resolve('jquery'),
         use: [{
           loader: 'expose-loader',
@@ -61,7 +61,7 @@ module.exports = {
           loader: 'expose-loader',
           options: '$'
         }]
-      }
+      }*/
     ]
   },
   optimization: {
