@@ -1,0 +1,19 @@
+{
+  "name": "readingbuddy-mini",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:itk-robotics/readingbuddy-mini.git",
+  "author": "ITK",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode=production",
+    "watch": "webpack --watch --mode=development"
+  },
+  "dependencies": {
+    "jquery-circle-progress": "^1.2.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
+  }
+}
