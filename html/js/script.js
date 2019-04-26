@@ -14,23 +14,26 @@ try {
       });
     });
   });
-} catch (err) {
+} catch (err) {qi
   console.log("Error when initializing QiSession: " + err.message);
   console.log("Make sure you load this page from the robots server.")
 }
 
+// BUTTONS
 $(function () {
   $('#10min').click(start_timer_10min);
 });
 
 $(function () {
+  $('#toggle_timer_button').click(toggle_timer);
+});
+
+// MEMORY EVENTS
+$(function () {
   $('#event_test').click(raiseMemoryEventTest);
 });
 
-function toggle_timer(data) {
-  subscriber.signal.disconnect(id_head_touch)
-  $('h1').text('Time is counting down! ' + data )
-}
+//FUNCTIONS
 
 function start_timer_10min() {
   session.service('ALTextToSpeech').then(function (tts) {
@@ -52,3 +55,33 @@ function raiseMemoryEventTest() {
     console.log(error);
   })
 }
+
+var seconds = 60
+function toggle_timer() {
+ var countdown = setInterval(function() {
+    seconds--;
+    document.getElementById("countdown").textContent = seconds;
+    if (seconds <= 0) clearInterval(countdown);
+}, 1000);
+}
+
+// *** test ***
+// http://doc.aldebaran.com/2-5/dev/js/index-1.0.html#js-1-0-migrate
+
+var signalLink;
+var serviceDirectory;
+
+function onServiceAdded(serviceId, serviceName)
+{
+  console.log("New service", serviceId, serviceName);
+  serviceDirectory.serviceAdded.disconnect(signalLink);
+}
+
+session.service("ServiceDirectory").done(function (sd) {
+  serviceDirectory = sd;
+  serviceDirectory.serviceAdded.connect(onServiceAdded).done(function (link) {
+    signalLink = link;
+  }).fail(function (error) {
+    console.log("An error occurred: " + error);
+  });
+});
