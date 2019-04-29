@@ -1,34 +1,48 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="readingbuddy-mini-14dd2c" version="0.0.1">
- <names>
-  <name lang="da_DK">readingbuddy-mini</name>
-  <name lang="en_US">Untitled</name>
- </names>
- <supportedLanguages>
-  <language>da_DK</language>
- </supportedLanguages>
- <descriptionLanguages>
-  <language>da_DK</language>
- </descriptionLanguages>
- <contents>
-  <behaviorContent path="behavior_1">
-   <userRequestable/>
-   <nature>interactive</nature>
-   <names>
-    <name lang="da_DK">readingbuddy-mini</name>
-   </names>
-   <triggerSentences>
-    <sentence lang="da_DK">læsemakker</sentence>
-   </triggerSentences>
-   <loadingResponses/>
-   <autonomous/>
-   <permissions/>
-  </behaviorContent>
- </contents>
- <services>
-  <service autorun="false" execStart="main.py" name="PythonAppMain"/>
- </services>
- <executableFiles>
-  <file path="main.py"/>
- </executableFiles>
+<package version="0.0.1" uuid="readingbuddy-mini-14dd2c">
+  <names>
+    <name lang="da_DK">læsemakker</name>
+    <name lang="da_DK-x-scrald">læsemakker</name>
+  </names>
+  <descriptions>
+    <description lang="da_DK">Læsemakker mini</description>
+    <description lang="da_DK-x-scrald">Læsemakker mini</description>
+  </descriptions>
+  <supportedLanguages>
+    <language>da_DK</language>
+  </supportedLanguages>
+  <descriptionLanguages>
+    <language>da_DK</language>
+  </descriptionLanguages>
+  <contents>
+    <behaviorContent path="behavior_1">
+      <userRequestable/>
+      <nature>interactive</nature>
+      <names>
+        <name lang="da_DK">mini læsemakker</name>
+        <name lang="da_DK-x-scrald">mini læsemakker</name>
+      </names>
+      <descriptions>
+        <description lang="da_DK">Læsemakker mini</description>
+        <description lang="da_DK-x-scrald">Læsemakker mini</description>
+      </descriptions>
+      <triggerSentences>
+        <sentence lang="da_DK">læsemakker</sentence>
+        <sentence lang="da_DK-x-scrald">læsemakker</sentence>
+      </triggerSentences>
+      <loadingResponses/>
+      <autonomous/>
+      <permissions/>
+    </behaviorContent>
+  </contents>
+  <requirements>
+    <naoqiRequirement minVersion="2.5"/>
+    <robotRequirement model="JULIETTE"/>
+  </requirements>
+  <services>
+    <service autorun="false" execStart="main.py" name="PythonAppMain"/>
+  </services>
+  <executableFiles>
+    <file path="main.py"/>
+  </executableFiles>
 </package>

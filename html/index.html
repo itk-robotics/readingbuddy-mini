@@ -11,7 +11,7 @@
 
 <body>
 
-    <div id="pageChoice" class="container">
+    <div id="pageTimeChoice" class="container">
         <div class="row mt-5 mb-5">
             <div class="col">
                 <h1 class="display-1 mb-3">Vælg læsetid</h1>
@@ -20,17 +20,17 @@
         </div>
         <div class="row">
             <div class="col-4">
-                <button id="readTime10" href="countdown.html" class="btn btn-primary btn-lg btn-block text-white">
-                    <h1 class="display-4 pt-3 pb-3">1</h1>
+                <button id="readTime3" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">10</h1>
                 </button>
             </div>
             <div class="col-4">
-                <button id="readTime20" class="btn btn-primary btn-lg btn-block text-white">
+                <button id="readTime7" class="btn btn-primary btn-lg btn-block text-white">
                     <h1 class="display-4 pt-3 pb-3">20</h1>
                 </button>
             </div>
             <div class="col-4">
-                <button id="readTime30" class="btn btn-primary btn-lg btn-block text-white">
+                <button id="readTime10" class="btn btn-primary btn-lg btn-block text-white">
                     <h1 class="display-4 pt-3 pb-3">30</h1>
                 </button>
             </div>
@@ -52,31 +52,104 @@
         </div>
     </div>
 
-    <div id="pageQuestion" class="container d-none">
+    <div id="pageQuestionA" class="container d-none">
         <div class="row mt-5 mb-5">
             <div class="col">
-                <h1 class="display-1 mb-3">Tiden er gået!</h1>
-                <p class="lead display-4">Hvad synes du?</p>
+                <h1 class="display-1 mb-3">Spørgsmål 1</h1>
+                <p class="lead display-4">Hvor foregår historiens univers?</p>
             </div>
 
         </div>
-        <div class="row">
+        <div class="row"> <!--Question A-->
             <div class="col">
-                <button id="questionHest" href="countdown.html" class="btn btn-primary btn-lg btn-block text-white">
-                    <h1 class="display-4 pt-3 pb-3">Hest</h1>
+                <button id="questionA1" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Virkelighed</h1>
                 </button>
             </div>
             <div class="col">
-                <button id="questionSko" class="btn btn-primary btn-lg btn-block text-white">
-                    <h1 class="display-4 pt-3 pb-3">Sko</h1>
+                <button id="questionA2" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Fantasi</h1>
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="pageQuestionB" class="container d-none">
+        <div class="row mt-5 mb-5">
+            <div class="col">
+                <h1 class="display-1 mb-3">Spørgsmål 2</h1>
+                <p class="lead display-4">Hvilken stemning synes du at der er i historien?</p>
+            </div>
+
+        </div>
+        <div class="row"> <!--Question B-->
+            <div class="col">
+                <button id="questionB1" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Sjov</h1>
                 </button>
             </div>
             <div class="col">
-                <button id="questionTrappe" class="btn btn-primary btn-lg btn-block text-white">
-                    <h1 class="display-4 pt-3 pb-3">Trappe</h1>
+                <button id="questionB2" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Trist</h1>
+                </button>
+            </div>
+            <div class="col">
+                <button id="questionB3" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Uhyggelig</h1>
                 </button>
             </div>
         </div>
+
+    </div>
+
+
+    <div id="pageQuestionC" class="container d-none">
+        <div class="row mt-5 mb-5">
+            <div class="col">
+                <h1 class="display-1 mb-3">Spørgsmål 3</h1>
+                <p class="lead display-4">Hvad ved vi om hovedpersonen - er det en:</p>
+            </div>
+
+        </div>
+        <div class="row"> <!--Question C-->
+            <div class="col">
+                <button id="questionC1" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Dreng</h1>
+                </button>
+            </div>
+            <div class="col">
+                <button id="questionC2" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Pige</h1>
+                </button>
+            </div>
+            <div class="col">
+                <button id="questionC3" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Robot</h1>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="pageFinished" class="container d-none">
+        <div class="row mt-5 mb-5">
+            <div class="col">
+                <h1 class="display-1 mb-3">Tiden er gået!</h1>
+            </div>
+
+        </div>
+        <div class="row"> <!--Last page-->
+            <div class="col">
+                <button id="startOver" class="btn btn-primary btn-lg btn-block text-white">
+                    <h1 class="display-4 pt-3 pb-3">Læs ny bog</h1>
+                </button>
+            </div>
+
+        </div>
+
     </div>
 
 

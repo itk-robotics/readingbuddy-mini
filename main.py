@@ -70,8 +70,8 @@ class PythonReadingBuddy(object):
         #self.cb_tablet_button = self.memory.subscriber('tabletButtonPress')
         #self.id_tablet_button = self.cb_tablet_button.signal.connect(self.func_tablet_button)
 
-        self.cb_tablet_timer = self.memory.subscriber('me_tablet_timer_event')
-        self.id_tablet_timer = self.cb_tablet_timer.signal.connect(self.func_tablet_timer)
+        #self.cb_tablet_timer = self.memory.subscriber('me_tablet_timer_event')
+        #self.id_tablet_timer = self.cb_tablet_timer.signal.connect(self.func_tablet_timer)
 
         self.perception.resetPopulation()
         self.logger.info("Initialized!")
