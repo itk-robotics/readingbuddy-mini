@@ -65,16 +65,21 @@ class PythonReadingBuddy(object):
 
         self.memory = self.session.service("ALMemory")
 
-        self.callbackMiddleTactile = self.memory.subscriber('MiddleTactilTouched')
-        self.intSignalIDHeadtouch = self.callbackMiddleTactile.signal.connect(self.headtouchEvent)
+        # tablet interaction
+        # cb = callback, id = signal id, me = memory event
+        #self.cb_tablet_button = self.memory.subscriber('tabletButtonPress')
+        #self.id_tablet_button = self.cb_tablet_button.signal.connect(self.func_tablet_button)
 
-
-        #testing tablet memory event
-        self.callbackTabletButton = self.memory.subscriber('tabletButtonPress')
-        self.intSignalIDtabletButton = self.callbackTabletButton.signal.connect(self.tabletbuttonevent)
+        self.cb_tablet_timer = self.memory.subscriber('me_tablet_timer_event')
+        self.id_tablet_timer = self.cb_tablet_timer.signal.connect(self.func_tablet_timer)
 
         self.perception.resetPopulation()
         self.logger.info("Initialized!")
+        self.say_feedback = ["hvor er du god til at læse højt",
+                             "det er du rigtig god til",
+                             "årh det er spændende",
+                             "det er dejligt at høre historier"]
+
 
 
     @qi.nobind
@@ -83,9 +88,9 @@ class PythonReadingBuddy(object):
         print "\033[95m Starting app \033[0m"
         self.audio.playSoundSetFile('sfx_confirmation_1')
 
-        sleep(3)
-        print "raise myevent"
-        self.memory.raiseEvent("myevent","random data")
+        #self.listener = Listener() #init listener class
+
+
 
     @qi.nobind
     def headtouchEvent(self,var):
@@ -107,7 +112,7 @@ class PythonReadingBuddy(object):
         
         self.logger.info("Stopping service...")
         self.application.stop()
-        # TODO call al behaviormanager and stop the behavior. It block s The Dialog.
+        # TODO call al behaviormanager and stop the behavior. It block s The Dialog ?
         self.logger.info("Stopped!")
 
 
@@ -115,10 +120,8 @@ class PythonReadingBuddy(object):
     def cleanup(self):
         # called when your module is stopped
         self.logger.info("Cleaning...")
-        self.stopMonologue()
-        self.memory.raiseEvent("memHideString", 1) #todo delete
         self.ts.resetTablet()
-        #TODO Clean subscribed signals?
+        #TODO Unregister subscribed signals?? Or are they automatically removed when service is unregistered in the last line of main.py?
         #self.leds.on("FaceLeds")
         self.logger.info("Cleaned!")
 

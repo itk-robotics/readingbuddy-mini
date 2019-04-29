@@ -26,6 +26,13 @@ function sayReadDuration() {
   }, function (error) {
     console.log(error);
   })
+
+  session.service('ALAnimationPlayer').then(function (aniplay) {
+    aniplay.run('animations/Stand/Gestures/ShowTablet_1');
+
+   }, function (error) {
+    console.log(error);
+   })
 }
 function sayBeforeListening() {
   session.service('ALAnimatedSpeech').then(function (tts) {

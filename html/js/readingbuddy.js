@@ -117,6 +117,13 @@ function sayReadDuration() {
   }, function (error) {
     console.log(error);
   })
+
+  session.service('ALAnimationPlayer').then(function (aniplay) {
+    aniplay.run('animations/Stand/Gestures/ShowTablet_1');
+
+   }, function (error) {
+    console.log(error);
+   })
 }
 function sayBeforeListening() {
   session.service('ALAnimatedSpeech').then(function (tts) {
@@ -153,8 +160,7 @@ for (var i = 0; i < readTime.length; i++) {
 // Choices section
 
 function pageChoice(time) {
-    //sayBeforeListening(); // TODO make blocking
-    session.service('ALAnimatedSpeech').say("nu siger jeg altså noget.")
+    sayBeforeListening(); // TODO make blocking
     hideShow('pageChoice', 'pageTimer');
     pageTimer(time);
 };
