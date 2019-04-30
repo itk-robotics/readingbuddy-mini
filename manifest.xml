@@ -1,13 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="readingbuddy-mini-14dd2c" version="0.0.1">
+<package uuid="readingbuddymini-dm64" version="0.0.1">
  <names>
-  <name lang="da_DK">readingbuddy-mini</name>
-  <name lang="en_US">Untitled</name>
+  <name lang="da_DK">readingBuddyMini</name>
+  <name lang="da_DK-x-scrald">læsemakker</name>
+  <name lang="en_US">readingbuddymini</name>
  </names>
+ <descriptions>
+  <description lang="da_DK">Læsemakker mini</description>
+  <description lang="da_DK-x-scrald">Læsemakker mini</description>
+ </descriptions>
  <supportedLanguages>
   <language>da_DK</language>
  </supportedLanguages>
  <descriptionLanguages>
+  <language>en_US</language>
   <language>da_DK</language>
  </descriptionLanguages>
  <contents>
@@ -15,16 +21,27 @@
    <userRequestable/>
    <nature>interactive</nature>
    <names>
-    <name lang="da_DK">readingbuddy-mini</name>
+    <name lang="da_DK">minireadingbuddy</name>
+    <name lang="da_DK-x-scrald">mini læsemakker</name>
+    <name lang="en_US">minireadingbuddy</name>
    </names>
+   <descriptions>
+    <description lang="da_DK-x-scrald">Læsemakker mini</description>
+   </descriptions>
    <triggerSentences>
-    <sentence lang="da_DK">læsemakker</sentence>
+    <sentence lang="da_DK-x-scrald">læsemakker</sentence>
    </triggerSentences>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
+ <requirements>
+  <naoqiRequirement minVersion="2.5"/>
+  <robotRequirement model="JULIETTE"/>
+ </requirements>
  <services>
-  <service name="PythonAppMain" execStart="main.py" autorun="false"/>
+  <service execStart="main.py" name="PythonReadingBuddy" autorun="false"/>
  </services>
  <executableFiles>
   <file path="main.py"/>
