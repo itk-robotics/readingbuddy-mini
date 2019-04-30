@@ -75,6 +75,7 @@ class PythonReadingBuddy(object):
 
         self.perception.resetPopulation()
         self.logger.info("Initialized!")
+
         self.say_feedback = ["hvor er du god til at læse højt",
                              "det er du rigtig god til",
                              "årh det er spændende",
@@ -88,9 +89,6 @@ class PythonReadingBuddy(object):
         print "\033[95m Starting app \033[0m"
         self.audio.playSoundSetFile('sfx_confirmation_1')
 
-        #self.listener = Listener() #init listener class
-
-
 
     @qi.nobind
     def headtouchEvent(self,var):
@@ -101,9 +99,6 @@ class PythonReadingBuddy(object):
         self.intSignalIDHeadtouch = self.callbackMiddleTactile.signal.connect(self.headtouchEvent)
         #print "signal connected: self.intSignalIDHeadtouch = " + str(self.intSignalIDHeadtouch)
 
-    @qi.nobind
-    def tabletbuttonevent(self, var):
-        print var
 
     @qi.nobind
     def stop_app(self):

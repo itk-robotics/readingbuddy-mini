@@ -14,7 +14,6 @@
         <File name="readingbuddy-mini" src=".idea/readingbuddy-mini.iml" />
         <File name="vcs" src=".idea/vcs.xml" />
         <File name="workspace" src=".idea/workspace.xml" />
-        <File name="Laeseoplevelse_20_min" src="Laeseoplevelse_20_min.pdf" />
         <File name="README" src="README.md" />
         <File name="styles" src="html/css/styles.css" />
         <File name="pepper" src="html/img/pepper.png" />
@@ -24,11 +23,8 @@
         <File name="readingbuddy" src="html/js/readingbuddy.js" />
         <File name="icon" src="icon.png" />
         <File name="main" src="main.py" />
-        <File name="package" src="package.json" />
         <File name="index" src="src/index.js" />
         <File name="readingbuddy" src="src/js/readingbuddy.js" />
-        <File name="webpack.config" src="webpack.config.js" />
-        <File name="yarn" src="yarn.lock" />
     </Resources>
     <Topics />
     <IgnoredPaths />
