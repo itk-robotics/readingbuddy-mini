@@ -12,7 +12,6 @@ sys.stderr = codecs.getwriter('utf8')(sys.stderr)
 from time import time, sleep
 import datetime
 
-
 class PythonReadingBuddy(object):
 
     def __init__(self, application):
@@ -56,6 +55,7 @@ class PythonReadingBuddy(object):
             self.ts.showWebview()
             self.logger.info("Tablet loaded!")
         except Exception, e:
+            print e #todo delete and just read robot log...
             self.logger.error(e)
             self.notification.add(
                 {"message": "loading error. I cant use my tablet", "severity": "warning", "removeOnRead": True})
@@ -65,10 +65,21 @@ class PythonReadingBuddy(object):
 
         self.memory = self.session.service("ALMemory")
 
-        self.callbackMiddleTactile = self.memory.subscriber('MiddleTactilTouched')
-        self.intSignalIDHeadtouch = self.callbackMiddleTactile.signal.connect(self.headtouchEvent)
+        # tablet interaction
+        # cb = callback, id = signal id, me = memory event
+        #self.cb_tablet_button = self.memory.subscriber('tabletButtonPress')
+        #self.id_tablet_button = self.cb_tablet_button.signal.connect(self.func_tablet_button)
+
+        #self.cb_tablet_timer = self.memory.subscriber('me_tablet_timer_event')
+        #self.id_tablet_timer = self.cb_tablet_timer.signal.connect(self.func_tablet_timer)
+
         self.perception.resetPopulation()
         self.logger.info("Initialized!")
+        self.say_feedback = ["hvor er du god til at læse højt",
+                             "det er du rigtig god til",
+                             "årh det er spændende",
+                             "det er dejligt at høre historier"]
+
 
 
     @qi.nobind
@@ -76,6 +87,9 @@ class PythonReadingBuddy(object):
         self.logger.info("Started!")
         print "\033[95m Starting app \033[0m"
         self.audio.playSoundSetFile('sfx_confirmation_1')
+
+        #self.listener = Listener() #init listener class
+
 
 
     @qi.nobind
@@ -88,13 +102,17 @@ class PythonReadingBuddy(object):
         #print "signal connected: self.intSignalIDHeadtouch = " + str(self.intSignalIDHeadtouch)
 
     @qi.nobind
+    def tabletbuttonevent(self, var):
+        print var
+
+    @qi.nobind
     def stop_app(self):
         # To be used if internal methods need to stop the service from inside.
         # external NAOqi scripts should use ALServiceManager.stopService if they need to stop it.
         
         self.logger.info("Stopping service...")
         self.application.stop()
-        # TODO call al behaviormanager and stop the behavior. It block s The Dialog.
+        # TODO call al behaviormanager and stop the behavior. It block s The Dialog ?
         self.logger.info("Stopped!")
 
 
@@ -102,10 +120,8 @@ class PythonReadingBuddy(object):
     def cleanup(self):
         # called when your module is stopped
         self.logger.info("Cleaning...")
-        self.stopMonologue()
-        self.memory.raiseEvent("memHideString", 1)
         self.ts.resetTablet()
-        #TODO Clean subscribed signals?
+        #TODO Unregister subscribed signals?? Or are they automatically removed when service is unregistered in the last line of main.py?
         #self.leds.on("FaceLeds")
         self.logger.info("Cleaned!")
 
@@ -113,16 +129,12 @@ class PythonReadingBuddy(object):
 if __name__ == "__main__":
     # with this you can run the script for tests on remote robots
     # run : python main.py --qi-url 123.123.123.123
-    with open('logfile.txt', 'a') as the_file:
-        the_file.write('main called\n')
     app = qi.Application(sys.argv)
     app.start()
     service_instance = PythonReadingBuddy(app)
     service_id = app.session.registerService(service_instance.service_name, service_instance)
     service_instance.start_app()
     app.run()
-
-
 
     service_instance.cleanup()
     app.session.unregisterService(service_id)
