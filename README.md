@@ -1,12 +1,15 @@
 # læsemakker-mini
 
 # installation
+Get the danish dialog script that supports readingbuddymini
+https://github.com/itk-robotics/dk_dialog_scripted/tree/5f2b2f9dd240c982c44a5dbab1c172841825ff36
+
 open .pml in Choregraphe
 Connect to robot and install.
 
 # test
 Test html content in your browser by connecting to the robot enter the URL
-```http://<ROBOT-IP>/apps/readingbuddy-mini-14dd2c/```
+```http://<ROBOT-IP>/apps/readingbuddymini-dm64/```
 
 
 # run
