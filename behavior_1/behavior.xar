@@ -118,6 +118,7 @@ class MyClass(GeneratedClass):
         pass
 
     def onInput_onStart(self):
+
         self.tabletService = self.session().service("ALTabletService")
         self.tracker = self.session().service("ALTracker")
         self.life = self.session().service("ALAutonomousLife")
@@ -129,7 +130,7 @@ class MyClass(GeneratedClass):
         self.life.setAutonomousAbilityEnabled("SpeakingMovement", True)
         self.tracker.unregisterAllTargets()
         self.motion.setBreathEnabled("Arms",True)
-        self.posture.applyPosture('Stand',0.5)
+        self.posture.applyPosture('Stand',0.3)
         self.onStopped()
 
     def onInput_onStop(self):

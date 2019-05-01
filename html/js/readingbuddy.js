@@ -214,7 +214,7 @@ function pageTimeChoice(buttonTime) {
 function pageTimer(time) {
     console.log("ready to time");
     //countdown( 'ten-countdown', time, 0 ); //TODO enable
-    countdown( 'ten-countdown', time, 0 ); //TODO enable
+    countdown( 'ten-countdown', 0, 10 ); //TODO enable
 };
 
 // Timer functions
@@ -232,7 +232,6 @@ function countdown( elementName, minutes, seconds )
     {
         msLeft = endTime - (+new Date);
         if (  msLeft < 1000 ) {
-            playAnimation("animations/Stand/Emotions/Positive/Excited_3");
             getQuestions(); //show A, B or C questions. IF all have been answered, then it shows final page.
         } else {
             time = new Date( msLeft );
@@ -254,28 +253,36 @@ function getQuestions() {
 
     if (answerA == null) {
         hideShow('pageTimer', 'pageQuestionA');
+        playAnimation("animations/Stand/Gestures/Give_1");
+        animatedSay('\\rspd=80\\hvor er du god til at læse højt. \\pau=2000\\ Hvor tror du historiens univers foregår?')
+
         for (var i = 0; i < questionsA.length; i++) {
             var btnQuestionA = questionsA[i];
             document.getElementById(btnQuestionA).addEventListener('click', function () {
                 hideShow('pageQuestionA', 'pageTimer');
                 answerA = document.getElementById(btnQuestionA).innerText;
-                playAnimation("animations/Stand/Gestures/CountOne_1");
+                animatedSay('\\rspd=80\\ nu kan du læse videre.')
                 pageTimer(time)
             });
         }
     } else if (answerB == null) {
         hideShow('pageTimer', 'pageQuestionB');
+        playAnimation("animations/Stand/Gestures/Give_1");
+        animatedSay('\\rspd=80\\ det er du rigtig god til \\pau=2000\\ Hvilken stemning synes du at der er i historien?')
         for (var i = 0; i < questionsB.length; i++) {
             var btnQuestionB = questionsB[i];
             document.getElementById(btnQuestionB).addEventListener('click', function () {
                 hideShow('pageQuestionB', 'pageTimer');
-                playAnimation("animations/Stand/Gestures/CountOne_1");
+                animatedSay('\\rspd=80\\ nu kan du læse videre.')
+
                 answerB = document.getElementById(btnQuestionB).innerText;
                 pageTimer(time)
             });
         }
     } else {
         hideShow('pageTimer', 'pageQuestionC');
+        playAnimation("animations/Stand/Gestures/Give_1");
+        animatedSay('\\rspd=80\\ årh det er spændende \\pau=2000\\ Hvad ved vi om hovedpersonen?')
         for (var i = 0; i < questionsC.length; i++) {
             var btnQuestionC = questionsC[i];
             document.getElementById(btnQuestionC).addEventListener('click', function () {
@@ -305,7 +312,7 @@ function hideShow (hide, show) {
 
 function saySummary() {
     // some logic for what is said
-    animatedSay("\\rspd=80\\ Tusind tak for historien. Jeg nød at høre om " + answerC + "\\pau=80\\ " + answerA + "\\pau=80\\ " + answerB)
+    animatedSay("\\rspd=80\\ Tusind tak for historien. Jeg nød at høre om " + answerC + "\\pau=500\\ " + answerA + "\\pau=500\\ " + answerB)
 
 }
 

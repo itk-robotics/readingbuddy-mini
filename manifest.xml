@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="readingbuddymini-dm64" version="0.0.1">
+<package version="0.0.1" uuid="readingbuddymini-dm64">
  <names>
   <name lang="da_DK">readingBuddyMini</name>
   <name lang="da_DK-x-scrald">læsemakker</name>
@@ -31,8 +31,6 @@
    <triggerSentences>
     <sentence lang="da_DK-x-scrald">læsemakker</sentence>
    </triggerSentences>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
@@ -41,7 +39,7 @@
   <robotRequirement model="JULIETTE"/>
  </requirements>
  <services>
-  <service execStart="main.py" name="PythonReadingBuddy" autorun="false"/>
+  <service autorun="false" execStart="main.py" name="PythonReadingBuddy"/>
  </services>
  <executableFiles>
   <file path="main.py"/>

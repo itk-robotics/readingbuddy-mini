@@ -76,12 +76,6 @@ class PythonReadingBuddy(object):
         self.perception.resetPopulation()
         self.logger.info("Initialized!")
 
-        self.say_feedback = ["hvor er du god til at læse højt",
-                             "det er du rigtig god til",
-                             "årh det er spændende",
-                             "det er dejligt at høre historier"]
-
-
 
     @qi.nobind
     def start_app(self):

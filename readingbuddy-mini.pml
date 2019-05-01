@@ -25,6 +25,10 @@
         <File name="main" src="main.py" />
         <File name="index" src="src/index.js" />
         <File name="readingbuddy" src="src/js/readingbuddy.js" />
+        <File name="Laeseoplevelse_20_min" src="Laeseoplevelse_20_min.pdf" />
+        <File name="package" src="package.json" />
+        <File name="webpack.config" src="webpack.config.js" />
+        <File name="yarn" src="yarn.lock" />
     </Resources>
     <Topics />
     <IgnoredPaths />
