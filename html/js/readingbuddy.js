@@ -214,7 +214,7 @@ function pageTimeChoice(buttonTime) {
 function pageTimer(time) {
     console.log("ready to time");
     //countdown( 'ten-countdown', time, 0 ); //TODO enable
-    countdown( 'ten-countdown', 0, 10 ); //TODO enable
+    countdown( 'ten-countdown', time, 0 ); //TODO enable
 };
 
 // Timer functions
