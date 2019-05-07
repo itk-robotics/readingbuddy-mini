@@ -213,8 +213,7 @@ function pageTimeChoice(buttonTime) {
 // Countdown section
 function pageTimer(time) {
     console.log("ready to time");
-    //countdown( 'ten-countdown', time, 0 ); //TODO enable
-    countdown( 'ten-countdown', time, 0 ); //TODO enable
+    countdown( 'ten-countdown', time, 0 );
 };
 
 // Timer functions
@@ -254,8 +253,8 @@ function getQuestions() {
     if (answerA == null) {
         hideShow('pageTimer', 'pageQuestionA');
         playAnimation("animations/Stand/Gestures/Give_1");
-        animatedSay('\\rspd=80\\hvor er du god til at læse højt. \\pau=2000\\ Hvor tror du historiens univers foregår?')
-
+        animatedSay('\\rspd=80\\hvor er du god til at læse højt. \\pau=2000\\ Hvor tror du historiens univers foregår?');
+        /*
         for (var i = 0; i < questionsA.length; i++) {
             var btnQuestionA = questionsA[i];
             document.getElementById(btnQuestionA).addEventListener('click', function () {
@@ -265,10 +264,22 @@ function getQuestions() {
                 pageTimer(time)
             });
         }
+
+         */
+        document.getElementById('questionA1').addEventListener('click', function () {
+            questionButtonA('questionA1')
+        });
+
+        document.getElementById('questionA2').addEventListener('click', function () {
+            questionButtonA('questionA2')
+        });
+
     } else if (answerB == null) {
+
         hideShow('pageTimer', 'pageQuestionB');
         playAnimation("animations/Stand/Gestures/Give_1");
-        animatedSay('\\rspd=80\\ det er du rigtig god til \\pau=2000\\ Hvilken stemning synes du at der er i historien?')
+        animatedSay('\\rspd=80\\ det er du rigtig god til \\pau=2000\\ Hvilken stemning synes du at der er i historien?');
+        /*
         for (var i = 0; i < questionsB.length; i++) {
             var btnQuestionB = questionsB[i];
             document.getElementById(btnQuestionB).addEventListener('click', function () {
@@ -279,10 +290,24 @@ function getQuestions() {
                 pageTimer(time)
             });
         }
+         */
+        document.getElementById('questionB1').addEventListener('click', function () {
+            questionButtonB('questionB1')
+        });
+
+        document.getElementById('questionB2').addEventListener('click', function () {
+            questionButtonB('questionB2')
+        });
+        document.getElementById('questionB3').addEventListener('click', function () {
+            questionButtonB('questionB3')
+        });
+
+
     } else {
         hideShow('pageTimer', 'pageQuestionC');
         playAnimation("animations/Stand/Gestures/Give_1");
         animatedSay('\\rspd=80\\ årh det er spændende \\pau=2000\\ Hvad ved vi om hovedpersonen?')
+        /*
         for (var i = 0; i < questionsC.length; i++) {
             var btnQuestionC = questionsC[i];
             document.getElementById(btnQuestionC).addEventListener('click', function () {
@@ -292,10 +317,41 @@ function getQuestions() {
                 hideShow('pageQuestionC', 'pageFinished');
             });
         }
+         */
+        document.getElementById('questionC1').addEventListener('click', function () {
+            questionButtonC('questionC1')
+        });
+
+        document.getElementById('questionC2').addEventListener('click', function () {
+            questionButtonC('questionC2')
+        });
+        document.getElementById('questionC3').addEventListener('click', function () {
+            questionButtonC('questionC3')
+        });
 
     }
 }
 
+function questionButtonA(questionID) {
+    hideShow('pageQuestionA', 'pageTimer');
+    answerA = document.getElementById(questionID).innerText;
+    animatedSay('\\rspd=80\\ nu kan du læse videre.');
+    pageTimer(time);
+}
+
+function questionButtonB(questionID) {
+    hideShow('pageQuestionB', 'pageTimer');
+    answerB = document.getElementById(questionID).innerText;
+    animatedSay('\\rspd=80\\ nu kan du læse videre.');
+    pageTimer(time);
+}
+function questionButtonC(questionID) {
+    answerC = document.getElementById(questionID).innerText;
+    hideShow('pageQuestionC', 'pageFinished');
+    saySummary();
+
+
+}
 
 
 // Hide/show sections
