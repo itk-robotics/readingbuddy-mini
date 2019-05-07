@@ -148,14 +148,6 @@ function animatedSay(text) {
 
 }
 
-function raiseMemoryEventStop() {
-  session.service('ALMemory').then(function (memory) {
-    memory.raiseEvent('me_stop_app',0);
-  }, function (error) {
-    console.log(error);
-  })
-}
-
 
 // *** HERE BE INDEX.JS ***
 //require('jquery');
