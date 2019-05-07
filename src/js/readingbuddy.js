@@ -47,6 +47,7 @@ function playAnimation(animation) {
 }
 
 function animatedSay(text) {
+    console.log("answerA: " + answerA+ ". answerB: " + answerB + ". answerC: " + answerC); //TODO delete
     session.service('ALAnimatedSpeech').then(function (tts) {
     tts.say(text);
 
