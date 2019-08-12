@@ -227,7 +227,26 @@ function hideShow (hide, show) {
 
 function saySummary() {
     // some logic for what is said
-    animatedSay("\\rspd=80\\ Tusind tak for historien. Jeg nød at høre om " + answerC + "\\pau=800\\ " + answerA + "\\pau=800\\ " + answerB)
+    animatedSay("\\rspd=80\\ Tusind tak for oplæsningen. Sådan en " + answerB + " historie kan jeg nu godt lide. \\pau=1000\\" )
+
+    if (  answerA == "Fantasi" ) {
+            animatedSay( "\\rspd=80\\ jeg elsker historier med fri fantasi \\pau=1000\\");
+        } else {
+        // answer == 'Virkelighed'
+            animatedSay( "\\rspd=80\\ Tænk at sådan noget kan ske i virkelighede. \\pau=1000\\");
+    }
+
+    switch(answerC) {
+  case 'Pige':
+    animatedSay( "\\rspd=80\\ jeg gad godt møde pigen i historien");
+    break;
+  case 'Dreng':
+    animatedSay( "\\rspd=80\\ jeg gad godt møde drengen i historien");
+    break;
+  default:
+      //robot
+    animatedSay( "\\rspd=80\\ jeg gad godt møde robotten i historien");
+    }
 
 }
 
